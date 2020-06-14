@@ -2,7 +2,7 @@
 * 封装歌曲数据
 * */
 let promiseHttps = require('../utils/promiseHttps'),
-    {parse} = require('../utils/parseMusic'),
+    {parse} = require('../utils/parseSign'),
     {Base64} = require('js-base64')
 
 /*
