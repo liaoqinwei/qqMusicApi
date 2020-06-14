@@ -1,6 +1,9 @@
 **声明：以下接口仅限于学习使用，严禁用于商业用途**
 ## Start
-> 
+> git clone https://github.com/liaoqinwei/qqMusicApi.git
+>
+> npm install 
+>
 > npm run start
 
 
