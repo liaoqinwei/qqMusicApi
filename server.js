@@ -2,7 +2,7 @@ let express = require('express'),
     index = require('./request'),
     mime = require('mime'),
     bodyParser = require('body-parser'),
-    routers = require('./router')
+    routers = require('./router');
 // 初始化
 let app;
 let init = () => {
@@ -30,4 +30,6 @@ let init = () => {
     index.saveTopListData()
   }, 1000 * 60 * 60);
 }
+
 init()
+app.set('port',9090)

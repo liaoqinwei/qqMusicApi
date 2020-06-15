@@ -9,9 +9,9 @@
 
 #### 主页数据(推荐)
 
-> + recommend：获取主页的  推荐数据 (移动端)
+> + recommend：获取主页的  推荐数据 和 排行榜数据 (移动端)
 >   + type json
-> + tolist：获取主页的  排行榜数据
+> + tolist：获取主页的  排行榜数据 
 >   + type json
 > + precommend：获取主页推荐数据(Pc端)
 >   + type json
