@@ -14,11 +14,18 @@ router.get('/song', (req, res) => {
   } else {
     song.getSongData(songId, 1).then(result => {
       result = JSON.parse(result)
-      let data = result['req_0'].data,
-          url = data.sip[0] + data.midurlinfo[0].purl;
-      return song.getSongM4a(url)
+      let data = result['req_0'].data;
+      console.log(result)
+      if (data.expiration !== 0) {
+        let url = data.sip[0] + data.midurlinfo[0].purl;
+        return song.getSongM4a(url)
+      } else {
+        res.send(result)
+        return Promise.reject()
+      }
     }).then(result => {
       res.send(result)
+    }).catch(() => {
     })
   }
 })
@@ -33,8 +40,8 @@ router.get('/lyric', (req, res) => {
     })
   }
 })
-// 返回歌曲详情信息
-router.get('/songDetail', (req, res) => {
+// 返回歌曲描述信息
+router.get('/songDesc', (req, res) => {
   let songId = req.query.id;
   if (!songId) {
     res.send('请求错误，请传入参数')
@@ -43,6 +50,14 @@ router.get('/songDetail', (req, res) => {
       res.send(result)
     })
   }
+})
+// 获取歌曲的详情
+router.get('/songDetail', (req, res) => {
+  let songId = req.query.id
+
+  song.getSongDetail(songId).then(result => {
+    res.send(result)
+  })
 })
 
 

@@ -71,31 +71,22 @@ let getLyric = songId => {
     return Promise.resolve(result)
   })
 }
+/* 获取歌曲的详情信息 */
+let getSongDetail = songId => {
+  let hostname = 'u.y.qq.com',
+      url = '/cgi-bin/musicu.fcg',
+      body = `{"comm":{"g_tk":1708031742,"uin":2573424017,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"h5","needNewCode":1},"detail":{"module":"music.pf_song_detail_svr","method":"get_song_detail","param":{"song_id":${songId}}},"simsongs":{"module":"rcmusic.similarSongRadioServer","method":"get_simsongs","param":{"songid":${songId}}},"gedan":{"module":"music.mb_gedan_recommend_svr","method":"get_related_gedan","param":{"sin":0,"last_id":0,"song_type":1,"song_id":${songId}}},"video":{"module":"MvService.MvInfoProServer","method":"GetSongRelatedMv","param":{"songid":"${songId}","songtype":1,"lastmvid":0,"num":5}}}`,
+      method = 'POST',
+      params = {
+        _: Date.now()
+      };
+
+  return promiseHttps.getData({hostname, url, body, method, params})
+}
 
 module.exports = {
   getSongData,
   getSongM4a,
-  getLyric
+  getLyric,
+  getSongDetail
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

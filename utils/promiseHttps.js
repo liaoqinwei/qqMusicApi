@@ -15,6 +15,7 @@ let urlHandler = (url, param = {}) => {
   }
   return url.indexOf('?') > -1 ? `${url}&${result}` : `${url}?${result.slice(1)}`
 }
+
 /*
 * 用于发送请求 返回一个promise实例
 *
@@ -25,31 +26,44 @@ let getData = (config = {}) => {
     throw new Error('Please pass in parameters !')
   }
   /* 解构参数:url请求地址 params请求参数 headers请求头信息 hostname请求的主机名 */
-  let {url, params = {}, headers = {Connection: 'keep-alive', Accept: '*/*'}, hostname = 'c.y.qq.com'} = config,
+  let {
+        url,
+        params = {},
+        headers = {
+          Connection: 'keep-alive',
+          Accept: '*/*'
+        },
+        hostname = 'c.y.qq.com',
+        method = 'get'
+      } = config,
       path = urlHandler(url, params), // 解析参数
-      option = {
-        hostname,
-        path,
-        headers
-      }
+      options = {hostname, path, headers, method}
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     // 发送https请求
-    https.get(option, res => {
+    let req = https.request(options, (res) => {
       // 接收数据
       let chunk = ''
       // 数据是流传输 所以我们要监听 data 事件
       res.on('data', result => {
-        // console.log(result)
         chunk += result + ''
       })
-      // 数据传输完成触发end 数据完了我们执行 resolve 方法
       res.on('end', () => {
         resolve(chunk)
       })
     })
+    // 如果有请求体
+    if (config.body) {
+      req.write(config.body)
+    }
+    // 有错误就执行 reject
+    req.on('error', err => {
+      reject(err)
+    })
+    req.end()
   })
 }
+
 /*
 * 获取文件
 * */

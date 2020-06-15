@@ -15,6 +15,7 @@ let saveRecommendData = () => {
   })
 }
 
+// 排行榜数据
 let saveTopListData = () => {
   getData({url: 'https://i.y.qq.com/n2/m/index.html?tab=toplist'}).then(res => {
     let reg = /<script>window\.__INIT_DATA__=(.*?)<\/script>/,
