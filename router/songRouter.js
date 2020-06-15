@@ -54,7 +54,6 @@ router.get('/songDesc', (req, res) => {
 // 获取歌曲的详情
 router.get('/songDetail', (req, res) => {
   let songId = req.query.id
-
   song.getSongDetail(songId).then(result => {
     res.send(result)
   })

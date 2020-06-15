@@ -58,3 +58,6 @@
 > + songDetail?id： 获取歌曲详情信息
 >   + id: 歌曲的albumMid 
 >   + type json
+> + songDesc?id：获取歌曲的描述信息
+>   + id：歌曲的songid
+>   + type json   
