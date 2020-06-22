@@ -61,3 +61,8 @@
 > + songDetail?id：获取歌曲的描述信息
 >   + id：歌曲的songid
 >   + type json   
+#### 评论
+> + comment?id&page：获取评论
+>  + id：歌曲的id
+>  + page：查看评论的页数 默认0
+>  + type json

@@ -4,6 +4,7 @@ let songRouter = require('./songRouter'),
     rakingRouter = require('./rakingRouter'),
     albumRouter = require('./albumRouter'),
     pcRecommendRouter = require('./pcRecommendRouter'),
-    phoneIndexRouter = require('./phoneIndexRouter')
+    phoneIndexRouter = require('./phoneIndexRouter'),
+    commentRouter = require('./commentRouter')
 
-module.exports = [songRouter, songListRouter, searchRouter, rakingRouter, albumRouter, pcRecommendRouter, phoneIndexRouter]
+module.exports = [songRouter, songListRouter, searchRouter, rakingRouter, albumRouter, pcRecommendRouter, phoneIndexRouter,commentRouter]
